@@ -13,6 +13,8 @@
     {
       devShells.default = pkgs.mkShell.override { inherit stdenv; } {
         buildInputs = with pkgs; [
+          lld_14
+          llvmPackages.llvm
           openssl
           pkg-config
         ];
