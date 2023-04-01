@@ -7,20 +7,16 @@
   outputs = { self, nixpkgs, flake-utils }: flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = import nixpkgs { inherit system; };
-      llvmPackages = pkgs.llvmPackages_14;
+      llvmPackages = pkgs.llvmPackages_15;
       stdenv = llvmPackages.stdenv;
     in
     {
       devShells.default = pkgs.mkShell.override { inherit stdenv; } {
         buildInputs = with pkgs; [
-          lld_14
-          llvmPackages.llvm
-          openssl
-          pkg-config
+          ninja
+          ccache
+          yasm
         ];
-
-        LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
-        RUST_BACKTRACE = 1;
       };
     }
   );
