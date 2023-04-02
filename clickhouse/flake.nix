@@ -13,8 +13,9 @@
     {
       devShells.default = pkgs.mkShell.override { inherit stdenv; } {
         buildInputs = with pkgs; [
-          ninja
           ccache
+          cmake
+          ninja
           yasm
         ];
       };
