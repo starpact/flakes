@@ -13,13 +13,10 @@
     {
       devShells.default = pkgs.mkShell.override { inherit stdenv; } {
         buildInputs = with pkgs; [
-          lld_15
-          llvmPackages.llvm
           openssl
           pkg-config
         ];
 
-        LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
         RUST_BACKTRACE = 1;
       };
     }
