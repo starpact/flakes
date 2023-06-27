@@ -10,14 +10,11 @@
     {
       devShells.default = pkgs.mkShell.override { inherit stdenv; } {
         buildInputs = with pkgs; [
-          ccache
+          blas
           cmake
-          gawk
           lld_16
           llvmPackages.lldb
-          nasm
-          ninja
-          yasm
+          llvmPackages.openmp
         ];
 
         nativeBuildInputs = with pkgs; [ clang-tools_16 ]; # for wrapped clangd
