@@ -7,7 +7,7 @@
       llvmPackages = pkgs.llvmPackages_17;
     in
     {
-      devShells.default = pkgs.mkShell.override { stdenv = pkgs.clang16Stdenv; } {
+      devShells.default = pkgs.mkShell.override { stdenv = pkgs.clang17Stdenv; } {
         buildInputs = with pkgs; [
           ccache
           cmake
