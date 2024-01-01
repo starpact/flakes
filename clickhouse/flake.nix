@@ -4,23 +4,22 @@
   outputs = { self, nixpkgs, flake-utils }: flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = import nixpkgs { inherit system; };
-      llvmPackages = pkgs.llvmPackages_16;
-      stdenv = llvmPackages.stdenv;
+      llvmPackages = pkgs.llvmPackages_17;
     in
     {
-      devShells.default = pkgs.mkShell.override { inherit stdenv; } {
+      devShells.default = pkgs.mkShell.override { stdenv = pkgs.clang16Stdenv; } {
         buildInputs = with pkgs; [
           ccache
           cmake
           gawk
-          lld_16
+          lld_17
           llvmPackages.lldb
           nasm
           ninja
           yasm
         ];
 
-        nativeBuildInputs = with pkgs; [ clang-tools_16 ]; # for wrapped clangd
+        nativeBuildInputs = with pkgs; [ clang-tools_17 ]; # for wrapped clangd
 
         LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
       };

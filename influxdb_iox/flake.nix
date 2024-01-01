@@ -7,13 +7,13 @@
   outputs = { self, nixpkgs, flake-utils }: flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = import nixpkgs { inherit system; };
-      llvmPackages = pkgs.llvmPackages_16;
+      llvmPackages = pkgs.llvmPackages_17;
       stdenv = llvmPackages.stdenv;
     in
     {
       devShells.default = pkgs.mkShell.override { inherit stdenv; } {
         buildInputs = with pkgs; [
-          lld_16
+          lld_17
           openssl
           pkg-config
         ];
