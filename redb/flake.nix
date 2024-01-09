@@ -9,6 +9,7 @@
     in
     {
       devShells.default = pkgs.mkShell.override { inherit stdenv; } {
+        buildInputs = with pkgs; [ zlib libiconv ];
         LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
       };
     }
